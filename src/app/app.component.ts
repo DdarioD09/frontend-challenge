@@ -12,9 +12,10 @@ export class AppComponent {
     documentNumber: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(11)]),
   })
 
+  documentTypes: string[] = ['Seleccionar', 'Cédula de ciudadanía', 'Pasaporte'];
+
   onSubmit() {
     if (this.userForm.valid) {
-      console.log('sdusahdas');
       console.log(this.userForm.value);
       this.userForm.reset();
     }

@@ -1,17 +1,36 @@
-<form [formGroup]="userForm" (submit)="onSubmit()">
-  <label>First Name</label>
-  <input type="text" maxlength="20" formControlName="documentType">
-  <div *ngIf=" userForm.controls.documentType.invalid && userForm.controls.documentType.touched">
-    Document type is required
-  </div>
+<div class="search-form">
+  <label class="text-body-secondary form-header">Todos Los campos son obligatorios</label>
+  <form [formGroup]="userForm" (submit)="onSubmit()">
+    <fieldset>
+      <div class="mb-3">
+        <label class="form-label ">Tipo de documento</label>
+        <select class="form-select" formControlName="documentType">
+          <option *ngFor="let documentType of documentTypes" [value]="documentType">
+            {{documentType}}
+          </option>
+        </select>
+      </div>
 
-  <label>Last Name</label>
-  <input type="text" formControlName="documentNumber" maxlength="11" minlength="8" name="documento" class="form-control"
-    required autocomplete="off" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" min="1" />
+      <div *ngIf=" userForm.controls.documentType.invalid && userForm.controls.documentType.touched">
+        Document type is required
+      </div>
 
-  <div *ngIf=" userForm.controls.documentNumber.invalid && userForm.controls.documentNumber.touched">
-    Document number is required
-  </div>
+      <div class="mb-3">
+        <label for="disabledTextInput" class="form-label">Número de documento</label>
+        <input type="text" formControlName="documentNumber" maxlength="11" minlength="8" name="documento"
+          class="form-control" required autocomplete="off"
+          onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" min="1" />
+      </div>
 
-  <button type="submit" [disabled]="!userForm.valid">Submit</button>
-</form>
+      <div *ngIf=" userForm.controls.documentNumber.invalid && userForm.controls.documentNumber.touched">
+        Document number is required
+      </div>
+
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">
+          Buscar
+        </button>
+      </div>
+    </fieldset>
+  </form>
+</div>
