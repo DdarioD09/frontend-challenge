@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { IdentificationType } from 'src/app/enums/identification-type.enum';
+import { SearchCustomerRequest } from 'src/app/models/search.customer.interface.';
+import { CustomerService } from 'src/app/services/customer.service';
 
 @Component({
   selector: 'app-search-customer',
@@ -19,7 +21,10 @@ export class SearchCustomerComponent {
     IdentificationType.PASSPORT
   ];
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private customerService: CustomerService
+  ) { }
 
   enableButton(): boolean {
     return this.searchCustomerForm.invalid || this.isDefaultType();
@@ -34,9 +39,37 @@ export class SearchCustomerComponent {
     if (this.searchCustomerForm.invalid) {
       return;
     }
-    console.log(this.searchCustomerForm.value);
-    this.searchCustomerForm.reset();
+    this.customerService.getCustomerById(this.customerRequest())
+      .pipe()
+      .subscribe(response => {
+        if (response) {
+          console.log("🚀 ~ SearchCustomerComponent ~ onSearchCustomer ~ response:", response)
+        }
+      })
     this.searchCustomerForm.get('documentType')?.setValue(IdentificationType.DEFAULT);
+    this.searchCustomerForm.reset();
+  }
+
+  private customerRequest(): SearchCustomerRequest {
+    const { documentType, documentNumber } = this.searchCustomerForm.value;
+    const idTypeRequest = documentType === IdentificationType.CEDULA ? 'CEDULA' : 'PASSPORT';
+    const idNumberRequest = documentNumber ? documentNumber : '';
+    return { identificationNumber: idNumberRequest, identificationType: idTypeRequest };
+  }
+
+  onLogin(): void {
+    if (this.searchCustomerForm.invalid) {
+      return;
+    }
+    // const customerRequest: SearchCustomerRequest = this.searchCustomerForm.value;
+    console.log(this.searchCustomerForm.value);
+    // this.customerService.getCustomerById(customerRequest)
+    //   .pipe(takeUntil(this.destroy$))
+    //   .subscribe(res => {
+    //     if (res) {
+    //       this.router.navigate(['']);
+    //     }
+    //   })
   }
 
   getErrorMessage(filed: string): string | void {

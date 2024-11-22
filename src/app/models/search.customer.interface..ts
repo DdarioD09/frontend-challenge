@@ -1,13 +1,13 @@
-export type IdentificationTypes = 'CEDULA' | 'PASSPORT';
+export type IdentificationTypeCode = 'CEDULA' | 'PASSPORT';
 
 export interface SearchCustomerRequest {
     identificationNumber: string;
-    identificationType: IdentificationTypes
+    identificationType: IdentificationTypeCode
 }
 
 export interface Customer {
     identificationNumber: string;
-    identificationType: IdentificationTypes
+    identificationType: IdentificationTypeCode
     firstName?: string;
     middleName?: string;
     lastName?: string;

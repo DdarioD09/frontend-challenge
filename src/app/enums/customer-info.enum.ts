@@ -1,7 +1,11 @@
 export const CustomerInfo = {
     IDENTIFICATION_TYPE: {
         field: 'identificationType',
-        spanisName: 'Numero de identificaion'
+        spanisName: 'Tipo de documento'
+    },
+    IDENTIFICATION_NUMBER: {
+        field: 'identificationNumber',
+        spanisName: 'Numero de documento'
     },
     FIRST_NAME: {
         field: 'firstName',
