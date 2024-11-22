@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-search-client',
-  templateUrl: './search-client.component.html',
-  styleUrls: ['./search-client.component.css']
+  selector: 'app-search-customer',
+  templateUrl: './search-customer.component.html',
+  styleUrls: ['./search-customer.component.css']
 })
-export class SearchClientComponent {
-  searchClientForm = new FormGroup({
+export class SearchCustomerComponent {
+  searchCustomerForm = new FormGroup({
     documentType: new FormControl('Seleccionar', [Validators.required, Validators.maxLength(20)]),
     documentNumber: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(11)]),
   })
@@ -15,25 +15,26 @@ export class SearchClientComponent {
   documentTypes: string[] = ['Seleccionar', 'Cédula de ciudadanía', 'Pasaporte'];
 
   enableButton(): boolean {
-    return this.searchClientForm.invalid || this.isDefaultType();
+    return this.searchCustomerForm.invalid || this.isDefaultType();
   }
 
   isDefaultType(): boolean {
-    const { documentType } = this.searchClientForm.value;
+    const { documentType } = this.searchCustomerForm.value;
     return documentType === 'Seleccionar'
   }
 
   onSubmit() {
-    if (this.searchClientForm.invalid) {
+    if (this.searchCustomerForm.invalid) {
       return;
     }
-    this.searchClientForm.reset();
-    this.searchClientForm.get('documentType')?.setValue('Seleccionar');
+    console.log(this.searchCustomerForm.value);
+    this.searchCustomerForm.reset();
+    this.searchCustomerForm.get('documentType')?.setValue('Seleccionar');
   }
 
   getErrorMessage(filed: string): string | void {
     let message;
-    const formField = this.searchClientForm.get(filed);
+    const formField = this.searchCustomerForm.get(filed);
 
     // @ts-ignore
     if (formField.errors.required) {

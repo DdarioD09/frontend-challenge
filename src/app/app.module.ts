@@ -3,18 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SearchClientComponent } from './components/search-client/search-client.component';
-import { ClientInfoComponent } from './components/client-info/client-info.component';
+import { SearchCustomerComponent } from './components/search-customer/search-customer.component';
+import { CustomerInfoComponent } from './components/customer-info/customer-info.component';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchClientComponent,
-    ClientInfoComponent
+    SearchCustomerComponent,
+    CustomerInfoComponent
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
