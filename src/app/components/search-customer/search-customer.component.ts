@@ -41,11 +41,7 @@ export class SearchCustomerComponent {
     }
     this.customerService.getCustomerById(this.customerRequest())
       .pipe()
-      .subscribe(response => {
-        if (response) {
-          console.log("🚀 ~ SearchCustomerComponent ~ onSearchCustomer ~ response:", response)
-        }
-      })
+      .subscribe();
     this.searchCustomerForm.get('documentType')?.setValue(IdentificationType.DEFAULT);
     this.searchCustomerForm.reset();
   }
@@ -55,21 +51,6 @@ export class SearchCustomerComponent {
     const idTypeRequest = documentType === IdentificationType.CEDULA ? 'CEDULA' : 'PASSPORT';
     const idNumberRequest = documentNumber ? documentNumber : '';
     return { identificationNumber: idNumberRequest, identificationType: idTypeRequest };
-  }
-
-  onLogin(): void {
-    if (this.searchCustomerForm.invalid) {
-      return;
-    }
-    // const customerRequest: SearchCustomerRequest = this.searchCustomerForm.value;
-    console.log(this.searchCustomerForm.value);
-    // this.customerService.getCustomerById(customerRequest)
-    //   .pipe(takeUntil(this.destroy$))
-    //   .subscribe(res => {
-    //     if (res) {
-    //       this.router.navigate(['']);
-    //     }
-    //   })
   }
 
   getErrorMessage(filed: string): string | void {

@@ -1,2 +1,6 @@
-<app-search-customer></app-search-customer>
-<!-- <app-customer-info></app-customer-info> -->
+<div *ngIf="!customerExists">
+    <app-search-customer></app-search-customer>
+</div>
+<div *ngIf="customerExists">
+    <app-customer-info></app-customer-info>
+</div>

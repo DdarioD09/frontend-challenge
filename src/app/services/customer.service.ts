@@ -9,11 +9,16 @@ import { Customer, SearchCustomerRequest, voidCustomer } from '../models/search.
 })
 export class CustomerService {
   private api: string = 'http://localhost:8090/api/v1/clients'
+  private doesCustomerExist = new BehaviorSubject<boolean>(false);
   private customer = new BehaviorSubject<Customer>(voidCustomer);
 
   constructor(private http: HttpClient) { }
 
-  get customerInformation(): Observable<Customer> {
+  get doesCustomerExist$(): Observable<boolean> {
+    return this.doesCustomerExist.asObservable();
+  }
+
+  get customerInformation$(): Observable<Customer> {
     return this.customer.asObservable();
   }
 
@@ -26,11 +31,17 @@ export class CustomerService {
     return this.http.get<Customer>(`${this.api}/${request.identificationNumber}`, headers)
       .pipe(
         map((response): Customer => {
-          this.customer.next(response)
-          return response
+          this.customer.next(response);
+          this.doesCustomerExist.next(true);
+          return response;
         }),
         catchError((err => this.handleError(err)))
       );
+  }
+
+  public redirectToHomePage(): void {
+    this.customer.next(voidCustomer);
+    this.doesCustomerExist.next(false);
   }
 
   handleError(error: any): Observable<never> {
