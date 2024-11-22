@@ -1,6 +1,6 @@
 <div class="search-form">
     <label class="text-body-secondary form-header">Todos Los campos son obligatorios</label>
-    <form [formGroup]="searchCustomerForm" (submit)="onSubmit()">
+    <form [formGroup]="searchCustomerForm" (submit)="onSearchCustomer()">
         <div class="mb-3">
             <label class="form-label ">Tipo de documento</label>
             <select class="form-select" formControlName="documentType">

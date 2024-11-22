@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { IdentificationType } from 'src/app/enums/identification-type.enum';
 
 @Component({
   selector: 'app-search-customer',
@@ -7,12 +8,18 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./search-customer.component.css']
 })
 export class SearchCustomerComponent {
-  searchCustomerForm = new FormGroup({
-    documentType: new FormControl('Seleccionar', [Validators.required, Validators.maxLength(20)]),
-    documentNumber: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(11)]),
+  searchCustomerForm = this.formBuilder.group({
+    documentType: [IdentificationType.DEFAULT, [Validators.required, Validators.maxLength(20)]],
+    documentNumber: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(11)]],
   })
 
-  documentTypes: string[] = ['Seleccionar', 'Cédula de ciudadanía', 'Pasaporte'];
+  documentTypes: string[] = [
+    IdentificationType.DEFAULT,
+    IdentificationType.CEDULA,
+    IdentificationType.PASSPORT
+  ];
+
+  constructor(private formBuilder: FormBuilder) { }
 
   enableButton(): boolean {
     return this.searchCustomerForm.invalid || this.isDefaultType();
@@ -20,16 +27,16 @@ export class SearchCustomerComponent {
 
   isDefaultType(): boolean {
     const { documentType } = this.searchCustomerForm.value;
-    return documentType === 'Seleccionar'
+    return documentType === IdentificationType.DEFAULT;
   }
 
-  onSubmit() {
+  onSearchCustomer() {
     if (this.searchCustomerForm.invalid) {
       return;
     }
     console.log(this.searchCustomerForm.value);
     this.searchCustomerForm.reset();
-    this.searchCustomerForm.get('documentType')?.setValue('Seleccionar');
+    this.searchCustomerForm.get('documentType')?.setValue(IdentificationType.DEFAULT);
   }
 
   getErrorMessage(filed: string): string | void {
