@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Customer, SearchCustomerRequest } from 'src/app/models/search.customer.interface.';
+import { Customer, SearchCustomerRequest } from 'src/app/models/search.customer';
 import { CustomerService } from 'src/app/services/customer.service';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { IdentificationType } from 'src/app/enums/identification-type.enum';
-import { SearchCustomerRequest } from 'src/app/models/search.customer.interface.';
+import { SearchCustomerRequest } from 'src/app/models/search.customer';
 import { CustomerService } from 'src/app/services/customer.service';
 
 @Component({
