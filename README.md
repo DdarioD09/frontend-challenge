@@ -1,5 +1,5 @@
 # FrontendChallenge
-Este es un proyecto frontend complementario al [Backend Challenge](https://github.com/DdarioD09/backend-challenge/tree/master) para realizar la consulta de usuarios por número y tipo de documento. Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) version 16.2.1.
+Este es un proyecto frontend complementario al proyecto [Backend Challenge](https://github.com/DdarioD09/backend-challenge/tree/master) para realizar la consulta de usuarios por número y tipo de documento. Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) version 16.2.1.
 
 ## Servidor de desarrollo
 
