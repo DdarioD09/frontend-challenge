@@ -1,22 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SearchCustomerComponent } from './components/search-customer/search-customer.component';
-import { CustomerInfoComponent } from './components/customer-info/customer-info.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+
+import { AppComponent } from './app.component';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchCustomerComponent,
-    CustomerInfoComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ComponentsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,22 +10,21 @@ import { CustomerService } from 'src/app/services/customer.service';
 export class CustomerInfoComponent implements OnInit {
 
   customer!: Customer;
+  requestClient: SearchCustomerRequest = { identificationNumber: '23445322', identificationType: 'CEDULA' }
 
   constructor(private customerService: CustomerService) { }
 
   ngOnInit(): void {
     this.searchCustomer()
+    // Validate a client with missing info
+    // const fieldTiles: string[] = Object.keys(this.mockCustomer);
   }
 
   searchCustomer() {
     this.customerService
-      .getCustomerById({ identificationNumber: '23445322', identificationType: 'CEDULA' })
+      .getCustomerById(this.requestClient)
       .subscribe(
-        (res: Customer) => {
-          this.customer = res
-          console.log("🚀 ~ SearchClientComponent ~ getClient ~ this.client:", this.customer)
-        }
-      );
+        (res: Customer) => this.customer = res);
   }
 
   onReturn() {

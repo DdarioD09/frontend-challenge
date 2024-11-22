@@ -1,40 +1,40 @@
 <div class="card info-container">
-    <form class="info-form" (submit)="onReturn()">
+    <form class="info-form" (submit)="onReturn()" *ngIf="customer">
         <fieldset disabled>
             <legend><b>Información básica</b></legend>
             <div class="mb-3">
                 <label class="form-label text-body-secondary">Primer Apellido</label>
-                <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
+                <input type="text" class="form-control" placeholder="{{customer.lastName}}">
             </div>
 
             <div class="mb-3">
                 <label class="form-label text-body-secondary">Segundo Apellido</label>
-                <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
+                <input type="text" class="form-control" placeholder="{{customer.secondLastName}}">
             </div>
 
             <div class="mb-3">
                 <label class="form-label text-body-secondary">Primer Nombre</label>
-                <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
+                <input type="text" class="form-control" placeholder="{{customer.firstName}}">
             </div>
 
             <div class="mb-3">
                 <label class="form-label text-body-secondary">Segundo Nombre</label>
-                <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
+                <input type="text" class="form-control" placeholder="{{customer.middleName}}">
             </div>
 
             <div class="mb-3">
-                <label class="form-label text-body-secondary">Télefono</label>
-                <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
+                <label class="form-label text-body-secondary">Teléfono</label>
+                <input type="text" class="form-control" placeholder="{{customer.phoneNumber}}">
             </div>
 
             <div class="mb-3">
                 <label class="form-label text-body-secondary">Dirección</label>
-                <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
+                <input type="text" class="form-control" placeholder="{{customer.address}}">
             </div>
 
             <div class="mb-3">
                 <label class="form-label text-body-secondary">Ciudad de residencia</label>
-                <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
+                <input type="text" class="form-control" placeholder="{{customer.city}}">
             </div>
         </fieldset>
         <button type="submit" class="btn btn-primary">Volver</button>
