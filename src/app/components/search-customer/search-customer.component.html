@@ -1,5 +1,5 @@
-<div class="search-form">
-    <label class="text-body-secondary form-header">Todos Los campos son obligatorios</label>
+<div class="mt-5 search-form">
+    <label class="pb-3 gray-info-label">Todos Los campos son obligatorios</label>
     <form [formGroup]="searchCustomerForm" (submit)="onSearchCustomer()">
         <div class="mb-3">
             <label class="form-label ">Tipo de documento</label>
@@ -8,7 +8,7 @@
                     {{documentType}}
                 </option>
             </select>
-            <div class="text-body-secondary" *ngIf=" isDefaultType()">
+            <div class="gray-info-label" *ngIf=" isDefaultType()">
                 Seleccione un tipo de documento
             </div>
         </div>
@@ -18,13 +18,13 @@
             <input type="text" formControlName="documentNumber" maxlength="11" minlength="8" name="documento"
                 class="form-control" required autocomplete="off"
                 onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" min="1" />
-            <div
+            <div class="gray-info-label"
                 *ngIf=" searchCustomerForm.controls.documentNumber.invalid && searchCustomerForm.controls.documentNumber.touched">
                 {{ getErrorMessage("documentNumber") }}
             </div>
         </div>
 
-        <div class="d-grid gap-2">
+        <div class="d-grid pt-3">
             <button type="submit" class="btn btn-primary" [disabled]="enableButton()">
                 Buscar
             </button>

@@ -1,8 +1,13 @@
 .info-container {
     margin: 5%;
-    border: 2px solid #3604ab;
+    box-shadow: 0 2px 8px 0 rgba(28, 131, 225, 0.35);
+    border: solid 1px #1c83e1;
 }
 
 .info-form {
     margin: 5%;
+}
+
+.form-control:disabled {
+    background-color: #f7f7f7;
 }
